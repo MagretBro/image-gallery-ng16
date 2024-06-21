@@ -1,0 +1,17 @@
+<div class="gallery">
+    <div class="display">
+        <button class="nav prev" (click)="prevImage()">&lt;</button>
+        <img [src]="images[currentImageIndex]" alt="Main Image">
+        <button class="nav next" (click)="nextImage()">&lt;</button>
+    </div>
+    <div class="thumbnails">
+        <button class="nav prev" (click)="prevImage()">&lt;</button>
+        <div class="thumb-list">
+            <img *ngFor="let image of images; let i = index"
+            [src]="image"
+            [class.selected]="i === currentImageIndex"
+            (click)="selectImage(i)">
+        </div>
+        <button class="nav next" (click)="nextImage()">&lt;</button>
+    </div>
+</div>
