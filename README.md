@@ -1,6 +1,12 @@
 # ImgGallery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+This project was generated with Angular CLI version 16.2.14. It contains an up-to-date script for Angular 16 that implements a responsive image slider on your website.
+
+# Features
++ Responsive Image Slider: Displays a large image from the gallery with a thumbnail strip underneath.
++ Thumbnail Navigation: Clickable thumbnails to change the main displayed image.
++ Adaptive Design: Thumbnails adapt to the screen size. On mobile, thumbnails are hidden, and swipe navigation is enabled on the main image.
++ Navigation Controls: When there are more than 5 thumbnails, left and right navigation buttons are provided to scroll through the thumbnails.
 
 ## Development server
 
