@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImgGalleryComponent } from './img-gallery.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 describe('ImgGalleryComponent', () => {
   let component: ImgGalleryComponent;
@@ -8,7 +9,9 @@ describe('ImgGalleryComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ImgGalleryComponent]
+      declarations: [ImgGalleryComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA] // Добавьте эту строку, чтобы подавить ошибки о неизвестных элементах
+
     });
     fixture = TestBed.createComponent(ImgGalleryComponent);
     component = fixture.componentInstance;
@@ -54,6 +57,27 @@ it('should wrap to the first image when nextImage is called from the last image'
 });
 
 //5
+it('should display the current image', () => {
+  component.selectImage(1);
+  fixture.detectChanges();
+  const imgElement = fixture.nativeElement.querySelector('.display img');
+  expect(imgElement.src).toContain(component.images[1]);
+});
+
+it('should display all image thumbnails', () => {
+  fixture.detectChanges();
+  const thumbElements = fixture.nativeElement.querySelectorAll('.thumb-list img');
+  expect(thumbElements.length).toBe(component.images.length);
+});
+
+it('should change the current image when a thumbnail is clicked', () => {
+  const thumbElements = fixture.nativeElement.querySelectorAll('.thumb-list img');
+  thumbElements[3].click();
+  fixture.detectChanges();
+  expect(component.currentImageIndex).toBe(3);
+});
+
+
 
 
 

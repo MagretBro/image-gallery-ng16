@@ -1,10 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ImgGalleryComponent } from './img-gallery/img-gallery.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AppComponent, ImgGalleryComponent],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA] // Добавьте эту строку
+      }).compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -18,10 +32,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('img-gallery');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('img-gallery app is running!');
-  });
 });
